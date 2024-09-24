@@ -5,7 +5,6 @@ import android.util.Log;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,12 +37,12 @@ public class MealRemoteDataSource {
                 .build();
         service = retrofit.create(MealService.class);
     }
-    public void searchMealByName(String name , NetworkCallback networkCallback){
+    public void searchMealByName(String name , SearchMealByNameCallback searchMealByNameCallback){
         List<Meal> result;
         service.searchMealByName(name).enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-                networkCallback.onSuccessResult(response.body().getMeals());
+                searchMealByNameCallback.onSuccessResult(response.body().getMeals());
                 Log.i(TAG, "onResponse: "+response.body().getMeals().size());
             }
 
@@ -53,5 +52,19 @@ public class MealRemoteDataSource {
             }
         });
         
+    }
+    public void getRandomMeal(GetRandomMealCallback getRandomMealCallback){
+        Meal meal;
+        service.getRandomMeal().enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                getRandomMealCallback.onSuccessRandomResult(response.body().getMeals());
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                getRandomMealCallback.onFailureRandomResult("couldn't fetch a random meal ");
+            }
+        });
     }
 }

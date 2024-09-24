@@ -5,21 +5,21 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.foodplanner.databinding.ActivityMainBinding;
+import com.example.foodplanner.db.MealsLocalDataSource;
+import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.network.GetRandomMealCallback;
 import com.example.foodplanner.network.MealRemoteDataSource;
-import com.example.foodplanner.network.NetworkCallback;
+import com.example.foodplanner.network.SearchMealByNameCallback;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NetworkCallback {
+public class MainActivity extends AppCompatActivity implements SearchMealByNameCallback , GetRandomMealCallback {
 
     ActivityMainBinding binding;
     @Override
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NetworkCallback {
         replaceFragment(new MealOfTheDayFragment());
         MealRemoteDataSource remote = MealRemoteDataSource.getInstance();
         remote.searchMealByName("Arrabiata",this);
+        remote.getRandomMeal(this);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if(item.getItemId()==R.id.home){
                 replaceFragment(new MealOfTheDayFragment());
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements NetworkCallback {
             }
             return true;
         });
-
+        MealsLocalDataSourceImpl localDataSource = MealsLocalDataSourceImpl.getInstance(this);
+        Meal meal = new Meal(123,"this is the meal name","some category");
+        localDataSource.insertMeal(meal);
 
     }
     private void replaceFragment(Fragment fragment){
@@ -54,11 +57,21 @@ public class MainActivity extends AppCompatActivity implements NetworkCallback {
     }
     @Override
     public void onSuccessResult(List<Meal> meals) {
-        Toast.makeText(this, "the meal is "+meals.get(0).getMealName(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "the meal is "+meals.get(0).getMealName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onFailureResult(String errorMsg) {
+
+    }
+
+    @Override
+    public void onSuccessRandomResult(List<Meal> meals) {
+        Toast.makeText(this, "the meal is "+meals.get(0).getMealName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFailureRandomResult(String errorMsg) {
 
     }
 }

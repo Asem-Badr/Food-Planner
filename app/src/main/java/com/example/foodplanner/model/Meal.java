@@ -1,11 +1,14 @@
 package com.example.foodplanner.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
-
+@Entity(tableName = "meals_table")
 public class Meal {
-
+    @PrimaryKey
     @SerializedName("idMeal")
-    private String idMeal;
+    private int idMeal;
 
     @SerializedName("strMeal")
     private String mealName;
@@ -22,11 +25,20 @@ public class Meal {
     @SerializedName("strMealThumb")
     private String mealThumbnail;
 
-    public String getIdMeal() {
+
+    public Meal(int idMeal, String mealName, String category) {
+        this.idMeal = idMeal;
+        this.mealName = mealName;
+        this.category = category;
+    }
+
+
+
+    public int getIdMeal() {
         return idMeal;
     }
 
-    public void setIdMeal(String idMeal) {
+    public void setIdMeal(int idMeal) {
         this.idMeal = idMeal;
     }
 
