@@ -1,7 +1,6 @@
 package com.example.foodplanner;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.foodplanner.databinding.ActivityMainBinding;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
+import com.example.foodplanner.favorite.view.FavoriteFragment;
 import com.example.foodplanner.home.view.MealOfTheDayFragment;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.GetRandomMealCallback;
@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity implements SearchMealByNameC
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new MealOfTheDayFragment());
-        MealRemoteDataSource remote = MealRemoteDataSource.getInstance();
-        remote.searchMealByName("Arrabiata",this);
-        remote.getRandomMeal(this);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if(item.getItemId()==R.id.home){
                 replaceFragment(new MealOfTheDayFragment());
@@ -44,9 +41,20 @@ public class MainActivity extends AppCompatActivity implements SearchMealByNameC
             }
             return true;
         });
+        /* this code is just for testing other features*/
+        MealRemoteDataSource remote = MealRemoteDataSource.getInstance();
+        remote.searchMealByName("Arrabiata",this);
+        remote.getRandomMeal(this);
+
         MealsLocalDataSourceImpl localDataSource = MealsLocalDataSourceImpl.getInstance(this);
         Meal meal = new Meal(123,"this is the meal name","some category");
+        Meal meal2 = new Meal(321,"this is the meal name","some category");
+        Meal meal3 = new Meal(231,"this is the meal name","some category");
+
         localDataSource.insertMeal(meal);
+        localDataSource.insertMeal(meal2);
+        localDataSource.insertMeal(meal3);
+        /* end of this code is just for testing other features*/
 
     }
     private void replaceFragment(Fragment fragment){

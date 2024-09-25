@@ -50,20 +50,22 @@ public class MealOfTheDayFragment extends Fragment implements HomeView {
 
     @Override
     public void showData(Meal meal) {
-        Toast.makeText(requireContext(), meal.getMealName(), Toast.LENGTH_SHORT).show();
-        Glide.with(requireContext()).load(meal.getMealThumbnail()).apply(new RequestOptions()
-                        .override(200,200)
-                        .placeholder(R.drawable.baseline_downloading_24)
-                        .error(R.drawable.baseline_thumb_down_24))
-                .into(imgViewThumbnail);
-        txtViewMealTitle.setText(meal.getMealName());
-        cardMeal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.expandMeal(meal);
-                Toast.makeText(requireContext(), meal.getMealName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        if(isAdded()) {
+            Toast.makeText(requireContext(), meal.getMealName(), Toast.LENGTH_SHORT).show();
+            Glide.with(requireContext()).load(meal.getMealThumbnail()).apply(new RequestOptions()
+                            .override(200, 200)
+                            .placeholder(R.drawable.baseline_downloading_24)
+                            .error(R.drawable.baseline_thumb_down_24))
+                    .into(imgViewThumbnail);
+            txtViewMealTitle.setText(meal.getMealName());
+            cardMeal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presenter.expandMeal(meal);
+                    Toast.makeText(requireContext(), meal.getMealName(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override
