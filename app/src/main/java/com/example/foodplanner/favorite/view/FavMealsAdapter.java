@@ -1,6 +1,7 @@
 package com.example.foodplanner.favorite.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.foodplanner.MealActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meal;
 
@@ -83,8 +85,9 @@ public class FavMealsAdapter extends RecyclerView.Adapter<FavMealsAdapter.ViewHo
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, values.get(position).getMealName(), Toast.LENGTH_SHORT).show();
-                //this is supposed to open a specific activity which shows the meal data to the user
+                Intent intent = new Intent(context, MealActivity.class);
+                intent.putExtra("meal",values.get(position));
+                context.startActivity(intent);
             }
         });
     }

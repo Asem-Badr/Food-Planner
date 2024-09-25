@@ -1,5 +1,9 @@
 package com.example.foodplanner.home.presenter;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.example.foodplanner.MealActivity;
 import com.example.foodplanner.db.MealsLocalDataSource;
 import com.example.foodplanner.home.view.HomeView;
 import com.example.foodplanner.model.Meal;
@@ -28,11 +32,6 @@ public class HomePresenterImpl implements HomePresenter, GetRandomMealCallback {
     @Override
     public void addToFav(Meal meal) {
         localDataSource.insertMeal(meal);
-    }
-
-    @Override
-    public void expandMeal(Meal meal) {
-        //this is supposed to open a specific activity which shows the meal data to the user
     }
 
     @Override

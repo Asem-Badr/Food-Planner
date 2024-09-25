@@ -16,6 +16,7 @@ import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.GetRandomMealCallback;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.network.SearchMealByNameCallback;
+import com.example.foodplanner.search.SearchFragment;
 
 import java.util.List;
 

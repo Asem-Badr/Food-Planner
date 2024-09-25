@@ -4,4 +4,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dailyMeal">Daily Meal</string>
     <string name="rmFromFav">Remove From Favorite</string>
+    <string name="byCountry">Search By Country</string>
+    <string name="byCategory">Search By Category</string>
+    <string name="byIngredient">Search By Ingredient</string>
+    <string name="weeklyPlanner">Weekly Planner</string>
+    <string name="instructions">Instructions</string>
 </resources>
