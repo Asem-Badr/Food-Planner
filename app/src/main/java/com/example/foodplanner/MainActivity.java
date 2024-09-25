@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.foodplanner.databinding.ActivityMainBinding;
-import com.example.foodplanner.db.MealsLocalDataSource;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
+import com.example.foodplanner.home.view.MealOfTheDayFragment;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.GetRandomMealCallback;
 import com.example.foodplanner.network.MealRemoteDataSource;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements SearchMealByNameC
 
     @Override
     public void onSuccessRandomResult(List<Meal> meals) {
-        Toast.makeText(this, "the meal is "+meals.get(0).getMealName(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "the meal is "+meals.get(0).getMealName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
