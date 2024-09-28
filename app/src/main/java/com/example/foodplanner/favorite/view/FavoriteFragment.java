@@ -44,7 +44,7 @@ public class FavoriteFragment extends Fragment implements FavView,OnRmFavoriteCl
         adapter = new FavMealsAdapter(requireContext(), new ArrayList<>(),this);
         recyclerViewFav.setAdapter(adapter);
 
-        MealsLocalDataSourceImpl localDataSource = MealsLocalDataSourceImpl.getInstance(requireContext());
+        MealsLocalDataSourceImpl localDataSource = MealsLocalDataSourceImpl.getInstance(requireContext());//error
         favPresenter = new FavPresenterImpl(this, localDataSource);
         favPresenter.getMeals();
         return view;
