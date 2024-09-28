@@ -23,29 +23,29 @@
             android:background="#F8ECEC">
 
             <TextView
-                android:id="@+id/txtTitle"
+                android:id="@+id/txtIngredient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="@+id/txtDesc"
-                app:layout_constraintStart_toStartOf="@+id/txtDesc"
+                app:layout_constraintEnd_toEndOf="@+id/txtMeasure"
+                app:layout_constraintStart_toStartOf="@+id/txtMeasure"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title design" />
 
             <TextView
-                android:id="@+id/txtDesc"
+                android:id="@+id/txtMeasure"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/btnRemoveFromFav"
                 app:layout_constraintStart_toStartOf="@+id/btnRemoveFromFav"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                app:layout_constraintTop_toBottomOf="@+id/txtIngredient"
                 tools:text="Description design" />
 
             <ImageView
-                android:id="@+id/imgView_thumbnail"
+                android:id="@+id/imgView_ingredient"
                 android:layout_width="114dp"
                 android:layout_height="128dp"
                 android:layout_marginStart="25dp"
@@ -64,7 +64,7 @@
                 android:text="@string/rmFromFav"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/txtMeasure" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

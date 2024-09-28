@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F29D9D"
-    tools:context=".MealActivity">
+    tools:context=".showMeal.view.MealActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="40dp">
 
             <ImageView
@@ -32,26 +32,33 @@
 
             <TextView
                 android:id="@+id/txtMealName"
-                android:layout_width="124dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="TextView"
+                android:fontFamily="@font/alkatra"
                 android:textAlignment="center"
+                android:textColor="#403A3A"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgMeal" />
+                app:layout_constraintTop_toBottomOf="@+id/imgMeal"
+                tools:text="Meal Title" />
 
             <TextView
                 android:id="@+id/txtArea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/alkatra"
                 android:text="TextView"
+                android:textColor="#383131"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtMealName" />
+                app:layout_constraintTop_toBottomOf="@+id/txtMealName"
+                tools:text="Country" />
 
             <TextView
                 android:id="@+id/txtInstructions"
@@ -67,6 +74,46 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtArea" />
+
+            <WebView
+                android:id="@+id/webViewVideo"
+                android:layout_width="341dp"
+                android:layout_height="203dp"
+                android:layout_marginTop="30dp"
+                app:barrierMargin="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtInstructions" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/ingredients"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/webViewVideo" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <Button
+                android:id="@+id/btnAddToFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/addToFav"
+                app:layout_constraintBottom_toBottomOf="@+id/imgMeal"
+                app:layout_constraintEnd_toEndOf="@+id/imgMeal" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

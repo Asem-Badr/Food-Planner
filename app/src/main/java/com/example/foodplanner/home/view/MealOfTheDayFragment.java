@@ -1,6 +1,5 @@
 package com.example.foodplanner.home.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,7 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.foodplanner.MealActivity;
+import com.example.foodplanner.showMeal.view.MealActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.home.presenter.HomePresenter;

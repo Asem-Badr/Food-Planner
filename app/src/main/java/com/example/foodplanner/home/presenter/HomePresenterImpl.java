@@ -1,9 +1,5 @@
 package com.example.foodplanner.home.presenter;
 
-import android.content.Context;
-import android.content.Intent;
-
-import com.example.foodplanner.MealActivity;
 import com.example.foodplanner.db.MealsLocalDataSource;
 import com.example.foodplanner.home.view.HomeView;
 import com.example.foodplanner.model.Meal;

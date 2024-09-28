@@ -34,7 +34,8 @@ public class Meal implements Serializable {
     @SerializedName("strMealThumb")
     private String mealThumbnail;
 
-
+    @SerializedName("strYoutube")
+    private String mealVideo;
 
     //this section is for capturing ingredients and measures from ingredients list response :
     @SerializedName("idIngredient")
@@ -237,6 +238,18 @@ public class Meal implements Serializable {
 
     public void setMealThumbnail(String mealThumbnail) {
         this.mealThumbnail = mealThumbnail;
+    }
+
+
+
+
+
+    public String getMealVideo() {
+        return mealVideo;
+    }
+
+    public void setMealVideo(String mealVideo) {
+        this.mealVideo = mealVideo;
     }
 
 

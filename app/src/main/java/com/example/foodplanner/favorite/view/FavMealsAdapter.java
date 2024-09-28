@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.foodplanner.MealActivity;
+import com.example.foodplanner.showMeal.view.MealActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meal;
 
@@ -49,9 +48,9 @@ public class FavMealsAdapter extends RecyclerView.Adapter<FavMealsAdapter.ViewHo
         public ViewHolder(@NonNull View v) {
             super(v);
             layout = v;
-            txtTitle = v.findViewById(R.id.txtTitle);
-            txtDesc = v.findViewById(R.id.txtDesc);
-            imgView_thumbnail = v.findViewById(R.id.imgView_thumbnail);
+            txtTitle = v.findViewById(R.id.txtIngredient);
+            txtDesc = v.findViewById(R.id.txtMeasure);
+            imgView_thumbnail = v.findViewById(R.id.imgView_ingredient);
             constraintLayout = v.findViewById(R.id.row);
             btnRemoveToFav = v.findViewById(R.id.btnRemoveFromFav);
         }
