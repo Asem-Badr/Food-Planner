@@ -8,7 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity(tableName = "meals_table")
 public class Meal implements Serializable {
@@ -43,6 +45,9 @@ public class Meal implements Serializable {
 
     @SerializedName("strDescription")
     private String Description;
+
+    String ingredients;
+    String measures;
 
 
     //this section captures the whole ingredients from the meal response:
@@ -581,7 +586,31 @@ public class Meal implements Serializable {
         this.measure20 = measure20;
     }
 
-    public List<String> getIngredients() {
+    public static String fromListToString(List<String> list) {
+        return list.stream().collect(Collectors.joining(","));
+    }
+
+    public static List<String> fromStringToList(String value) {
+        return Arrays.asList(value.split(","));
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = fromListToString(getListIngredients());
+    }
+
+    public void setMeasures(String measures) {
+        this.measures = fromListToString(getListMeasures());
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public String getMeasures() {
+        return measures;
+    }
+
+    public List<String> getListIngredients() {
         List<String> ingredients = new ArrayList<>();
 
         if (ingredient1 != null && !ingredient1.isEmpty()) ingredients.add(ingredient1);
@@ -609,7 +638,7 @@ public class Meal implements Serializable {
     }
 
     // Function to get the list of measures
-    public List<String> getMeasures() {
+    public List<String> getListMeasures() {
         List<String> measures = new ArrayList<>();
 
         if (measure1 != null && !measure1.isEmpty()) measures.add(measure1);
