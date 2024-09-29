@@ -29,6 +29,7 @@ public class MealActivity extends AppCompatActivity {
     TextView txtInstructions;
     WebView webViewVideo;
     Button btnAddToFav;
+    Button btnRemoveFromFavMeal;
     RecyclerView recyclerViewIngredients;
     IngredientsAdapter adapter;
     @SuppressLint("SetJavaScriptEnabled")
@@ -43,10 +44,11 @@ public class MealActivity extends AppCompatActivity {
         txtArea = findViewById(R.id.txtArea);
         txtInstructions = findViewById(R.id.txtInstructions);
         btnAddToFav = findViewById(R.id.btnAddToFav);
+        btnRemoveFromFavMeal = findViewById(R.id.btnRemoveFromFavMeal);
         recyclerViewIngredients = findViewById(R.id.recyclerViewIngredients);
         recyclerViewIngredients.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewIngredients.setLayoutManager(layoutManager);
 
         WebSettings webSettings = webViewVideo.getSettings();
@@ -73,6 +75,12 @@ public class MealActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //presenter add_to_fav() call
+                }
+            });
+            btnRemoveFromFavMeal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //presenter remove_from_favorite() call
                 }
             });
         }

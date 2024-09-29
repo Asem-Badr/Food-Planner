@@ -22,6 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SearchMealByNameCallback , GetRandomMealCallback {
 
+    MealsLocalDataSourceImpl localDataSource;
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements SearchMealByNameC
         remote.searchMealByName("Arrabiata",this);
         remote.getRandomMeal(this);
 
-        MealsLocalDataSourceImpl localDataSource = MealsLocalDataSourceImpl.getInstance(this);
+        localDataSource = MealsLocalDataSourceImpl.getInstance(this);
         Meal meal = new Meal(123,"this is the meal name","some category");
         Meal meal2 = new Meal(321,"this is the meal name","some category");
         Meal meal3 = new Meal(231,"this is the meal name","some category");
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements SearchMealByNameC
     @Override
     public void onSuccessRandomResult(List<Meal> meals) {
         //Toast.makeText(this, "the meal is "+meals.get(0).getMealName(), Toast.LENGTH_SHORT).show();
+        localDataSource.insertMeal(meals.get(0));
     }
 
     @Override
