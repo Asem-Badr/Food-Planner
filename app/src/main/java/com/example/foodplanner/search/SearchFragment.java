@@ -27,33 +27,33 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        btnSearchCountry = view.findViewById(R.id.btnSearchCountry);
-        btnSearchCategory = view.findViewById(R.id.btnSearchCategroy);
-        btnSearchIngredient = view.findViewById(R.id.btnSearchIngredient);
-        
-        btnSearchCountry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open the search by country activity.
-                Toast.makeText(requireContext(), "opening search by country activity", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnSearchCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open the search by country activity.
-                Toast.makeText(requireContext(), "opening search by country activity", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnSearchIngredient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open the search by country activity.
-                Toast.makeText(requireContext(), "opening search by country activity", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        btnSearchCountry = view.findViewById(R.id.btnSearchCountry);
+//        btnSearchCategory = view.findViewById(R.id.btnSearchCategroy);
+//        btnSearchIngredient = view.findViewById(R.id.btnSearchIngredient);
+//
+//        btnSearchCountry.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //open the search by country activity.
+//                Toast.makeText(requireContext(), "opening search by country activity", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        btnSearchCategory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //open the search by country activity.
+//                Toast.makeText(requireContext(), "opening search by country activity", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        btnSearchIngredient.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //open the search by country activity.
+//                Toast.makeText(requireContext(), "opening search by country activity", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         return view;
     }

@@ -18,11 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
+import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.repository.MealsRepository;
+import com.example.foodplanner.showMeal.presenter.ShowMealPresenter;
+import com.example.foodplanner.showMeal.presenter.ShowMealPresenterImpl;
 
 import java.util.ArrayList;
 
-public class MealActivity extends AppCompatActivity {
+public class MealActivity extends AppCompatActivity implements ShowMealView,OnRmFavoriteClickListener,OnAddFavoriteClickListener{
     ImageView imgMeal;
     TextView txtMealName;
     TextView txtArea;
@@ -32,6 +37,7 @@ public class MealActivity extends AppCompatActivity {
     Button btnRemoveFromFavMeal;
     RecyclerView recyclerViewIngredients;
     IngredientsAdapter adapter;
+    ShowMealPresenter presenter;
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,9 @@ public class MealActivity extends AppCompatActivity {
         WebSettings webSettings = webViewVideo.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
+        presenter = new ShowMealPresenterImpl(this , MealsRepository.getInstance(
+                MealRemoteDataSource.getInstance(), MealsLocalDataSourceImpl.getInstance(this)
+        ));
 
         Intent intent = getIntent();
         Meal meal = (Meal) intent.getSerializableExtra("meal");
@@ -75,12 +84,14 @@ public class MealActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //presenter add_to_fav() call
+                    presenter.addToFav(meal);
                 }
             });
             btnRemoveFromFavMeal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //presenter remove_from_favorite() call
+                    presenter.removeFromFav(meal);
                 }
             });
         }
@@ -93,5 +104,15 @@ public class MealActivity extends AppCompatActivity {
             videoId = parts[1].split("&")[0];
         }
         return videoId;
+    }
+
+    @Override
+    public void onAddFavProductClick(Meal meal) {
+
+    }
+
+    @Override
+    public void onRmFavProductClick(Meal meal) {
+
     }
 }
