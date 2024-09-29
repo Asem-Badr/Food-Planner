@@ -2,6 +2,7 @@ package com.example.foodplanner.network;
 
 import android.util.Log;
 
+import com.example.foodplanner.model.CategoryResponse;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.MealResponse;
 
@@ -38,7 +39,6 @@ public class MealRemoteDataSource {
         service = retrofit.create(MealService.class);
     }
     public void searchMealByName(String name , SearchMealByNameCallback searchMealByNameCallback){
-        List<Meal> result;
         service.searchMealByName(name).enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
@@ -54,7 +54,6 @@ public class MealRemoteDataSource {
         
     }
     public void getRandomMeal(GetRandomMealCallback getRandomMealCallback){
-        Meal meal;
         service.getRandomMeal().enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
@@ -64,6 +63,58 @@ public class MealRemoteDataSource {
             @Override
             public void onFailure(Call<MealResponse> call, Throwable throwable) {
                 getRandomMealCallback.onFailureRandomResult("couldn't fetch a random meal ");
+            }
+        });
+    }
+    public void getMealCategories(GetMealCategoriesCallback getMealCategoriesCallback){
+        service.getMealCategories().enqueue(new Callback<CategoryResponse>() {
+            @Override
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+                getMealCategoriesCallback.onSuccessGetMealCategories(response.body().getCategories());
+            }
+
+            @Override
+            public void onFailure(Call<CategoryResponse> call, Throwable throwable) {
+                getMealCategoriesCallback.onFailureGetMealCategories("couldn't fetch categories");
+            }
+        });
+    }
+    public void filterMealsByIngredient(String ingredient ,FilterMealsByIngredientCallback filterMealsByIngredientCallback){
+        service.filterMealsByIngredient(ingredient).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                filterMealsByIngredientCallback.onSuccessFilterByIngredientResult(response.body().getMeals());
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                filterMealsByIngredientCallback.onFailureFilterByIngredientResult("couldn't filter by ingredient");
+            }
+        });
+    }
+    public void filterMealsByCategory(String category,FilterMealsByCategoryCallback filterMealsByCategoryCallback){
+        service.filterMealsByCategory(category).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                filterMealsByCategoryCallback.onSuccessFilterByCategoryResult(response.body().getMeals());
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                filterMealsByCategoryCallback.onFailureFilterByCategoryResult("couldn't filter by category ");
+            }
+        });
+    }
+    public void filterMealsByArea(String area,FilterMealsByAreaCallback filterMealsByAreaCallback){
+        service.filterMealsByArea(area).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                filterMealsByAreaCallback.onSuccessFilterByAreaResult(response.body().getMeals());
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                filterMealsByAreaCallback.onFailureFilterByAreaResult("couldn't filter by Area ");
             }
         });
     }
