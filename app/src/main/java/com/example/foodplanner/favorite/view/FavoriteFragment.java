@@ -14,10 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.db.MealsLocalDataSource;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.favorite.presenter.FavPresenter;
 import com.example.foodplanner.favorite.presenter.FavPresenterImpl;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.repository.MealsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +47,12 @@ public class FavoriteFragment extends Fragment implements FavView,OnRmFavoriteCl
         adapter = new FavMealsAdapter(requireContext(), new ArrayList<>(),this);
         recyclerViewFav.setAdapter(adapter);
 
-        MealsLocalDataSourceImpl localDataSource = MealsLocalDataSourceImpl.getInstance(requireContext());//error
-        favPresenter = new FavPresenterImpl(this, localDataSource);
+        //for the mvp design the view shouldn't contain any reference to the data sources.
+
+        favPresenter = new FavPresenterImpl(this, MealsRepository.getInstance(
+                MealRemoteDataSource.getInstance(),
+                MealsLocalDataSourceImpl.getInstance(requireContext())
+        ));
         favPresenter.getMeals();
         return view;
     }
