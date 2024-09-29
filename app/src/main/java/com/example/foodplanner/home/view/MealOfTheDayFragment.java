@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.foodplanner.repository.MealsRepository;
 import com.example.foodplanner.showMeal.view.MealActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
@@ -38,9 +39,9 @@ public class MealOfTheDayFragment extends Fragment implements HomeView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal_of_the_day, container, false);
-        MealsLocalDataSourceImpl localDataSource = MealsLocalDataSourceImpl.getInstance(requireContext());
-        MealRemoteDataSource remoteDataSource = MealRemoteDataSource.getInstance();
-        presenter = new HomePresenterImpl(this,remoteDataSource,localDataSource);
+        presenter = new HomePresenterImpl(this, MealsRepository.getInstance(
+                MealRemoteDataSource.getInstance(),
+                MealsLocalDataSourceImpl.getInstance(requireContext())));
 
         imgViewThumbnail = view.findViewById(R.id.imgViewThumbnail);
         txtViewMealTitle = view.findViewById(R.id.txtViewMealTitle);

@@ -5,29 +5,28 @@ import com.example.foodplanner.home.view.HomeView;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.GetRandomMealCallback;
 import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.repository.MealsRepository;
 
 import java.util.List;
 
 public class HomePresenterImpl implements HomePresenter, GetRandomMealCallback {
     private HomeView view;
-    private MealRemoteDataSource remoteDataSource;
-    private MealsLocalDataSource localDataSource;
+    MealsRepository repository;
 
-    public HomePresenterImpl(HomeView view, MealRemoteDataSource remoteDataSource, MealsLocalDataSource localDataSource) {
+    public HomePresenterImpl(HomeView view, MealsRepository _repository) {
         this.view = view;
-        this.remoteDataSource = remoteDataSource;
-        this.localDataSource = localDataSource;
+        repository = _repository;
     }
 
     private static final String TAG = "Home Presenter : ";
     @Override
     public void getRandomMeal() {
-        remoteDataSource.getRandomMeal(this);
+        repository.getRandomMeal(this);
     }
 
     @Override
     public void addToFav(Meal meal) {
-        localDataSource.insertMeal(meal);
+        repository.insertMeal(meal);
     }
 
     @Override
