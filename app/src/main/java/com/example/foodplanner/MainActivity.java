@@ -12,13 +12,7 @@ import com.example.foodplanner.databinding.ActivityMainBinding;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.favorite.view.FavoriteFragment;
 import com.example.foodplanner.home.view.MealOfTheDayFragment;
-import com.example.foodplanner.model.Meal;
-import com.example.foodplanner.network.GetRandomMealCallback;
-import com.example.foodplanner.network.MealRemoteDataSource;
-import com.example.foodplanner.network.SearchMealByNameCallback;
-import com.example.foodplanner.search.SearchFragment;
-
-import java.util.List;
+import com.example.foodplanner.search.view.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 

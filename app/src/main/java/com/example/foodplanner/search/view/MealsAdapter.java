@@ -1,7 +1,8 @@
-package com.example.foodplanner.favorite.view;
+package com.example.foodplanner.search.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,22 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.foodplanner.showMeal.view.MealActivity;
 import com.example.foodplanner.R;
+import com.example.foodplanner.favorite.view.OnRmFavoriteClickListener;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.showMeal.view.MealActivity;
 
 import java.util.List;
 
-public class FavMealsAdapter extends RecyclerView.Adapter<FavMealsAdapter.ViewHolder> {
+public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> {
     private final Context context;
     private List<Meal> values;
-    private OnRmFavoriteClickListener listener;
     private static final String TAG = "RecyclerViewFav";
 
-    public FavMealsAdapter(Context _context, List<Meal> myDataset, OnRmFavoriteClickListener _listener) {
+    public MealsAdapter(Context _context, List<Meal> myDataset) {
         context = _context;
         values = myDataset;
-        listener = _listener;
     }
     public void setList(List<Meal> _values){
         values = _values;
@@ -53,6 +53,7 @@ public class FavMealsAdapter extends RecyclerView.Adapter<FavMealsAdapter.ViewHo
             imgView_thumbnail = v.findViewById(R.id.imgView_ingredient);
             constraintLayout = v.findViewById(R.id.row);
             btnRemoveToFav = v.findViewById(R.id.btnRemoveFromFav);
+            btnRemoveToFav.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -75,12 +76,7 @@ public class FavMealsAdapter extends RecyclerView.Adapter<FavMealsAdapter.ViewHo
                         .override(150, 150)
                         .error(R.drawable.baseline_downloading_24))
                 .into(holder.imgView_thumbnail);
-        holder.btnRemoveToFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onRmFavProductClick(values.get(position));
-            }
-        });
+
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

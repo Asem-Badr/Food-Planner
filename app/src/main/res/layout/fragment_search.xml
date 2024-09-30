@@ -5,39 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F29D9D"
-    tools:context=".search.SearchFragment">
+    tools:context=".search.view.SearchFragment">
 
-    <Button
-        android:id="@+id/btnSearchCountry"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="228dp"
-        android:text="@string/byCountry"
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="#EFE5E5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnSearchCategroy"
-        android:layout_width="200dp"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="@string/byCategory"
-        app:layout_constraintBottom_toTopOf="@+id/btnSearchIngredient"
-        app:layout_constraintEnd_toEndOf="@+id/btnSearchCountry"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btnSearchCountry"
-        app:layout_constraintTop_toBottomOf="@+id/btnSearchCountry"
-        app:layout_constraintVertical_bias="0.5" />
+        android:layout_marginTop="26dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-    <Button
-        android:id="@+id/btnSearchIngredient"
-        android:layout_width="200dp"
+        <RadioButton
+            android:id="@+id/radioButtonCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/category"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonIngredient"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ingredient"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonCountry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/country"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMealName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/mealName"
+            android:textSize="12sp" />
+
+    </RadioGroup>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewResults"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="@string/byIngredient"
-        app:layout_constraintEnd_toEndOf="@+id/btnSearchCategroy"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/btnSearchCategroy"
-        app:layout_constraintTop_toBottomOf="@+id/btnSearchCategroy" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

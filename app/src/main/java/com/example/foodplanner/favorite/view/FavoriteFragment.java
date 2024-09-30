@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.db.MealsLocalDataSource;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.favorite.presenter.FavPresenter;
 import com.example.foodplanner.favorite.presenter.FavPresenterImpl;
@@ -28,7 +27,7 @@ import java.util.List;
 public class FavoriteFragment extends Fragment implements FavView,OnRmFavoriteClickListener{
     FavPresenter favPresenter;
     RecyclerView recyclerViewFav;
-    FavMealsAdapter adapter;
+    MealsAdapter adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +43,7 @@ public class FavoriteFragment extends Fragment implements FavView,OnRmFavoriteCl
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerViewFav.setLayoutManager(layoutManager);
-        adapter = new FavMealsAdapter(requireContext(), new ArrayList<>(),this);
+        adapter = new MealsAdapter(requireContext(), new ArrayList<>(),this);
         recyclerViewFav.setAdapter(adapter);
 
         //for the mvp design the view shouldn't contain any reference to the data sources.

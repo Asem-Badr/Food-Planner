@@ -21,29 +21,28 @@ public class MealRemoteDataSource {
 
     private static MealRemoteDataSource retrofit = null;
 
-    public static MealRemoteDataSource getInstance(){
-        if(retrofit == null){
+    public static MealRemoteDataSource getInstance() {
+        if (retrofit == null) {
             retrofit = new MealRemoteDataSource();
             return retrofit;
-        }
-        else{
+        } else {
             return retrofit;
         }
     }
 
-    private MealRemoteDataSource(){
+    private MealRemoteDataSource() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(MealService.class);
     }
-    public void searchMealByName(String name , SearchMealByNameCallback searchMealByNameCallback){
+
+    public void searchMealByName(String name, SearchMealByNameCallback searchMealByNameCallback) {
         service.searchMealByName(name).enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                 searchMealByNameCallback.onSuccessResult(response.body().getMeals());
-                Log.i(TAG, "onResponse: "+response.body().getMeals().size());
             }
 
             @Override
@@ -51,9 +50,10 @@ public class MealRemoteDataSource {
                 Log.i(TAG, "onFailure: ");
             }
         });
-        
+
     }
-    public void getRandomMeal(GetRandomMealCallback getRandomMealCallback){
+
+    public void getRandomMeal(GetRandomMealCallback getRandomMealCallback) {
         service.getRandomMeal().enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
@@ -66,7 +66,8 @@ public class MealRemoteDataSource {
             }
         });
     }
-    public void getMealCategories(GetMealCategoriesCallback getMealCategoriesCallback){
+
+    public void getMealCategories(GetMealCategoriesCallback getMealCategoriesCallback) {
         service.getMealCategories().enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
@@ -79,7 +80,9 @@ public class MealRemoteDataSource {
             }
         });
     }
-    public void filterMealsByIngredient(String ingredient ,FilterMealsByIngredientCallback filterMealsByIngredientCallback){
+
+    public void filterMealsByIngredient(String ingredient, FilterMealsByIngredientCallback
+            filterMealsByIngredientCallback) {
         service.filterMealsByIngredient(ingredient).enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
@@ -92,7 +95,8 @@ public class MealRemoteDataSource {
             }
         });
     }
-    public void filterMealsByCategory(String category,FilterMealsByCategoryCallback filterMealsByCategoryCallback){
+
+    public void filterMealsByCategory(String category, FilterMealsByCategoryCallback filterMealsByCategoryCallback) {
         service.filterMealsByCategory(category).enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
@@ -105,7 +109,8 @@ public class MealRemoteDataSource {
             }
         });
     }
-    public void filterMealsByArea(String area,FilterMealsByAreaCallback filterMealsByAreaCallback){
+
+    public void filterMealsByArea(String area, FilterMealsByAreaCallback filterMealsByAreaCallback) {
         service.filterMealsByArea(area).enqueue(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {

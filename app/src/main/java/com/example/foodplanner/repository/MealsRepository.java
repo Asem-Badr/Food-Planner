@@ -11,6 +11,7 @@ import com.example.foodplanner.network.FilterMealsByIngredientCallback;
 import com.example.foodplanner.network.GetMealCategoriesCallback;
 import com.example.foodplanner.network.GetRandomMealCallback;
 import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.network.SearchMealByNameCallback;
 
 import java.util.List;
 
@@ -44,7 +45,9 @@ public class MealsRepository {
     public void deleteMeal(Meal meal) {
         localDataSource.deleteMeal(meal);
     }
-
+    public void searchMealByName(String name, SearchMealByNameCallback searchMealByNameCallback){
+        remoteDataSource.searchMealByName(name,searchMealByNameCallback);
+    }
     public void getRandomMeal(GetRandomMealCallback getRandomMealCallback) {
         remoteDataSource.getRandomMeal(getRandomMealCallback);
     }
