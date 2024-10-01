@@ -10,6 +10,8 @@ import com.example.foodplanner.network.FilterMealsByCategoryCallback;
 import com.example.foodplanner.network.FilterMealsByIngredientCallback;
 import com.example.foodplanner.network.GetMealCategoriesCallback;
 import com.example.foodplanner.network.GetRandomMealCallback;
+import com.example.foodplanner.network.ListAreasCallBack;
+import com.example.foodplanner.network.LookupMealByIdCallback;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.network.SearchMealByNameCallback;
 
@@ -70,8 +72,12 @@ public class MealsRepository {
         remoteDataSource.filterMealsByArea(area, filterMealsByAreaCallback);
     }
 
-//    public void getCountries(GetCountriesCallBack getCountriesCallBack){
-//        remoteDataSource
-//    }
+    public void lookupMealById(int mealId, LookupMealByIdCallback lookupMealByIdCallback){
+        remoteDataSource.lookupMealById(mealId,lookupMealByIdCallback);
+    }
+
+    public void listAreas(ListAreasCallBack listAreasCallBack){
+        remoteDataSource.listAreas(listAreasCallBack);
+    }
 
 }

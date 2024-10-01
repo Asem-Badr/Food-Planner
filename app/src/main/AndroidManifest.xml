@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FoodPlanner"
         tools:targetApi="31">
         <activity
+            android:name=".showMeals.view.ShowMealsActivity"
+            android:exported="false" />
+        <activity
             android:name=".showMeal.view.MealActivity"
             android:exported="false" />
         <activity

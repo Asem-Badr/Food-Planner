@@ -74,9 +74,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context, MealActivity.class);
-//                intent.putExtra("meal",values.get(position));
-//                context.startActivity(intent);
+                //show the meals of the category in an activity
             }
         });
     }

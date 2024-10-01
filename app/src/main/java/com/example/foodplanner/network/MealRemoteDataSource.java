@@ -123,7 +123,32 @@ public class MealRemoteDataSource {
             }
         });
     }
-//    public void getCountries(GetCountriesCallBack getCountriesCallBack){
-//        service.
-//    }
+
+    public void lookupMealById(int mealId, LookupMealByIdCallback lookupMealByIdCallback){
+        service.lookupMealById(mealId).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                lookupMealByIdCallback.onSuccessLookupMealById(response.body().getMeals());
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                lookupMealByIdCallback.onFailureLookupMealById("couldn'f fetch meal by id ");
+            }
+        });
+    }
+
+    public void listAreas(ListAreasCallBack listAreasCallBack){
+        service.listAreas().enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                listAreasCallBack.onSuccessListAreasCallBack(response.body().getMeals());
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                listAreasCallBack.onFailureListAreasCallBack("couldn't fetch Countries");
+            }
+        });
+    }
 }
