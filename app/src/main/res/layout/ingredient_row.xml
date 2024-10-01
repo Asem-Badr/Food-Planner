@@ -4,40 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/row"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
-    <TextView
-        android:id="@+id/txtIngredient"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imgView_ingredient"
-        app:layout_constraintStart_toStartOf="@+id/txtMeasure"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ingredient" />
+        app:cardCornerRadius="20dp">
 
-    <TextView
-        android:id="@+id/txtMeasure"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgView_ingredient"
-        app:layout_constraintTop_toBottomOf="@+id/txtIngredient"
-        tools:text="Measure" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F8F4F4">
 
-    <ImageView
-        android:id="@+id/imgView_ingredient"
-        android:layout_width="80dp"
-        android:layout_height="71dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+            <TextView
+                android:id="@+id/txtIngredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/txtMeasure"
+                app:layout_constraintStart_toStartOf="@+id/txtMeasure"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Ingredient" />
+
+            <TextView
+                android:id="@+id/txtMeasure"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:layout_constraintStart_toEndOf="@+id/imgView_ingredient"
+                app:layout_constraintTop_toBottomOf="@+id/txtIngredient"
+                tools:text="Measure" />
+
+            <ImageView
+                android:id="@+id/imgView_ingredient"
+                android:layout_width="80dp"
+                android:layout_height="71dp"
+                app:srcCompat="@drawable/ic_launcher_background" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

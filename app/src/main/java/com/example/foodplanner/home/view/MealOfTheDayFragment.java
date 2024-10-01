@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.foodplanner.favorite.view.MealsAdapter;
+import com.example.foodplanner.model.Category;
 import com.example.foodplanner.repository.MealsRepository;
 import com.example.foodplanner.showMeal.view.MealActivity;
 import com.example.foodplanner.R;
@@ -24,11 +28,18 @@ import com.example.foodplanner.home.presenter.HomePresenterImpl;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.MealRemoteDataSource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MealOfTheDayFragment extends Fragment implements HomeView {
     ImageView imgViewThumbnail;
     TextView txtViewMealTitle;
     CardView cardMeal;
     HomePresenter presenter;
+    RecyclerView recyclerViewCountries;
+    RecyclerView recyclerViewCategories;
+    CountriesAdapter countriesAdapter;
+    CategoriesAdapter categoriesAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +59,26 @@ public class MealOfTheDayFragment extends Fragment implements HomeView {
         cardMeal = view.findViewById(R.id.cardMeal);
         presenter.getRandomMeal();
 
+//        recyclerViewCountries = view.findViewById(R.id.recyclerViewCountries);
+//        recyclerViewCountries.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+//        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+//        recyclerViewCountries.setLayoutManager(layoutManager);
+//        countriesAdapter = new CountriesAdapter(requireContext(), new ArrayList<>());
+//        recyclerViewCountries.setAdapter(countriesAdapter);
+
+        recyclerViewCategories = view.findViewById(R.id.recyclerViewCategories);
+        recyclerViewCategories.setHasFixedSize(true);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(requireContext());
+        layoutManager2.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerViewCategories.setLayoutManager(layoutManager2);
+        countriesAdapter = new CountriesAdapter(requireContext(), new ArrayList<>());
+        recyclerViewCategories.setAdapter(countriesAdapter);
+
+        categoriesAdapter = new CategoriesAdapter(requireContext(), new ArrayList<>());
+        recyclerViewCategories.setAdapter(categoriesAdapter);
+
+        presenter.getCategories();
         return view;
     }
 
@@ -69,6 +100,20 @@ public class MealOfTheDayFragment extends Fragment implements HomeView {
                     startActivity(intent);
                 }
             });
+        }
+    }
+
+    @Override
+    public void showCountries(List<Meal> countries) {
+        countriesAdapter.setList(countries);  // Update adapter's data
+        countriesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCategories(List<Category> categories) {
+        if(categories != null) {
+            categoriesAdapter.setList(categories);
+            categoriesAdapter.notifyDataSetChanged();
         }
     }
 

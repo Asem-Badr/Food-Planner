@@ -69,4 +69,9 @@ public class MealsRepository {
     public void filterMealsByArea(String area, FilterMealsByAreaCallback filterMealsByAreaCallback) {
         remoteDataSource.filterMealsByArea(area, filterMealsByAreaCallback);
     }
+
+//    public void getCountries(GetCountriesCallBack getCountriesCallBack){
+//        remoteDataSource
+//    }
+
 }
