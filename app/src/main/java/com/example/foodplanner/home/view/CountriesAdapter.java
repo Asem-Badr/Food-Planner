@@ -18,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.showMeal.view.MealActivity;
+import com.example.foodplanner.showMeals.view.ShowMealsActivity;
 
 import java.util.List;
 
@@ -73,8 +74,8 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MealActivity.class);
-                intent.putExtra("meal",values.get(position));
+                Intent intent = new Intent(context, ShowMealsActivity.class);
+                intent.putExtra("country",values.get(position).getArea());
                 context.startActivity(intent);
             }
         });

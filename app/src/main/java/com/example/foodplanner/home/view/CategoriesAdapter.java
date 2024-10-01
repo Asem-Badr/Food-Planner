@@ -19,6 +19,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.model.Category;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.showMeal.view.MealActivity;
+import com.example.foodplanner.showMeals.view.ShowMealsActivity;
 
 import java.util.List;
 
@@ -74,7 +75,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //show the meals of the category in an activity
+                Intent intent = new Intent(context, ShowMealsActivity.class);
+                intent.putExtra("category",values.get(position).getStrCategory());
+                context.startActivity(intent);
             }
         });
     }

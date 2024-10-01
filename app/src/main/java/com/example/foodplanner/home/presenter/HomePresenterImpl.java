@@ -6,13 +6,14 @@ import com.example.foodplanner.model.Category;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.GetMealCategoriesCallback;
 import com.example.foodplanner.network.GetRandomMealCallback;
+import com.example.foodplanner.network.ListAreasCallBack;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.repository.MealsRepository;
 
 import java.util.List;
 
 public class HomePresenterImpl implements HomePresenter, GetRandomMealCallback ,
-        GetMealCategoriesCallback {
+        GetMealCategoriesCallback , ListAreasCallBack {
     private HomeView view;
     MealsRepository repository;
 
@@ -34,7 +35,7 @@ public class HomePresenterImpl implements HomePresenter, GetRandomMealCallback ,
 
     @Override
     public void getCountries() {
-
+        repository.listAreas(this);
     }
 
     @Override
@@ -60,5 +61,15 @@ public class HomePresenterImpl implements HomePresenter, GetRandomMealCallback ,
     @Override
     public void onFailureGetMealCategories(String errorMsg) {
         view.showErrMsg("couldn't fetch categories ");
+    }
+
+    @Override
+    public void onSuccessListAreasCallBack(List<Meal> countries) {
+        view.showCountries(countries);
+    }
+
+    @Override
+    public void onFailureListAreasCallBack(String errorMsg) {
+
     }
 }

@@ -20,22 +20,29 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
 import com.example.foodplanner.favorite.view.OnRmFavoriteClickListener;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.network.LookupMealByIdCallback;
+import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.repository.MealsRepository;
 import com.example.foodplanner.showMeal.view.MealActivity;
 
 import java.util.List;
 
-public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> {
+public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> implements LookupMealByIdCallback {
     private final Context context;
     private List<Meal> values;
+    Meal fullDataMeal;
     private static final String TAG = "RecyclerViewFav";
 
     public MealsAdapter(Context _context, List<Meal> myDataset) {
         context = _context;
         values = myDataset;
     }
-    public void setList(List<Meal> _values){
+
+    public void setList(List<Meal> _values) {
         values = _values;
     }
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtTitle;
@@ -80,11 +87,26 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MealActivity.class);
-                intent.putExtra("meal",values.get(position));
-                context.startActivity(intent);
+
+                //create new meal and get full object from the network -> violation to mvp?
+                MealRemoteDataSource remote = MealRemoteDataSource.getInstance();
+                remote.lookupMealById(values.get(position).getIdMeal(), MealsAdapter.this);
+
             }
         });
+    }
+
+    @Override
+    public void onSuccessLookupMealById(List<Meal> meals) {
+        Intent intent = new Intent(context, MealActivity.class);
+        fullDataMeal = meals.get(0);
+        intent.putExtra("meal", fullDataMeal);
+        context.startActivity(intent);
+    }
+
+    @Override
+    public void onFailureLookupMealById(String errorMsg) {
+
     }
 
     @Override

@@ -59,25 +59,23 @@ public class MealOfTheDayFragment extends Fragment implements HomeView {
         cardMeal = view.findViewById(R.id.cardMeal);
         presenter.getRandomMeal();
 
-//        recyclerViewCountries = view.findViewById(R.id.recyclerViewCountries);
-//        recyclerViewCountries.setHasFixedSize(true);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-//        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
-//        recyclerViewCountries.setLayoutManager(layoutManager);
-//        countriesAdapter = new CountriesAdapter(requireContext(), new ArrayList<>());
-//        recyclerViewCountries.setAdapter(countriesAdapter);
+        recyclerViewCountries = view.findViewById(R.id.recyclerViewCountries);
+        recyclerViewCountries.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerViewCountries.setLayoutManager(layoutManager);
+        countriesAdapter = new CountriesAdapter(requireContext(), new ArrayList<>());
+        recyclerViewCountries.setAdapter(countriesAdapter);
 
         recyclerViewCategories = view.findViewById(R.id.recyclerViewCategories);
         recyclerViewCategories.setHasFixedSize(true);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(requireContext());
         layoutManager2.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewCategories.setLayoutManager(layoutManager2);
-        countriesAdapter = new CountriesAdapter(requireContext(), new ArrayList<>());
-        recyclerViewCategories.setAdapter(countriesAdapter);
-
         categoriesAdapter = new CategoriesAdapter(requireContext(), new ArrayList<>());
         recyclerViewCategories.setAdapter(categoriesAdapter);
 
+        presenter.getCountries();
         presenter.getCategories();
         return view;
     }
@@ -105,8 +103,10 @@ public class MealOfTheDayFragment extends Fragment implements HomeView {
 
     @Override
     public void showCountries(List<Meal> countries) {
+        if(countries != null){
         countriesAdapter.setList(countries);  // Update adapter's data
         countriesAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
