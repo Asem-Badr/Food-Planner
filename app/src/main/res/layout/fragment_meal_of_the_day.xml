@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/dailyMeal"
         android:textColor="#AF053A"
@@ -24,7 +24,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardMeal"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="280dp"
         android:layout_marginTop="20dp"
         app:cardBackgroundColor="#EFE7E7"
         app:cardCornerRadius="20dp"
@@ -53,7 +53,7 @@
                 android:id="@+id/txtViewMealTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/alkatra"
                 android:textAlignment="center"
                 android:textColor="#403A3A"
@@ -69,7 +69,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCategories"
         android:layout_width="409dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +78,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCountries"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewCategories" />
 

@@ -77,7 +77,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, ingredients.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, ingredients.get(position)+"\n"+measures.get(position), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -66,7 +66,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtTitle.setText(values.get(position).getStrCategory());
-        holder.txtDesc.setText(values.get(position).getStrCategoryDescription());
+        //holder.txtDesc.setText(values.get(position).getStrCategoryDescription());
         //holder.imgView_thumbnail.setImageResource(values.get(position).getThumbnail());
         Glide.with(context).load(values.get(position).getStrCategoryThumb()).apply(new RequestOptions()
                         .override(150, 150)

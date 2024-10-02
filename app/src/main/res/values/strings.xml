@@ -16,4 +16,8 @@
     <string name="ingredient">Ingredient</string>
     <string name="category">Category</string>
     <string name="mealName">Meal Name</string>
+    <string name="addToPlan">Add To Plan</string>
+    <string name="selectDate">Select a date to add the meal to:</string>
+    <string name="addMeal">Add Meal</string>
+    <string name="planner">Planner</string>
 </resources>

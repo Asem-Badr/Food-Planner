@@ -34,7 +34,7 @@
                 android:id="@+id/txtMealName"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="72dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/alkatra"
                 android:textAlignment="center"
                 android:textColor="#403A3A"
@@ -42,7 +42,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgMeal"
+                app:layout_constraintTop_toBottomOf="@+id/button2"
                 tools:text="Meal Title" />
 
             <TextView
@@ -65,22 +65,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
                 android:text="@string/instructions"
                 android:textAlignment="center"
                 android:textColor="#1B1919"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtArea" />
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewIngredients" />
 
             <WebView
                 android:id="@+id/webViewVideo"
                 android:layout_width="341dp"
                 android:layout_height="203dp"
+                android:layout_margin="20dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="24dp"
                 app:barrierMargin="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,19 +92,19 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/ingredients"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/webViewVideo" />
+                app:layout_constraintTop_toBottomOf="@+id/txtArea" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewIngredients"
                 android:layout_width="373dp"
-                android:layout_height="92dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.473"
+                app:layout_constraintHorizontal_bias="0.342"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -125,6 +127,17 @@
                 android:text="@string/rmFromFavShort"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgMeal" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:text="@string/addToPlan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAddToFav" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
