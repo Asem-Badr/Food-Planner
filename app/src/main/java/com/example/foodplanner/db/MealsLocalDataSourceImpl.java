@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.PlannedMeal;
 
 import java.util.List;
 
@@ -48,5 +49,29 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
     @Override
     public LiveData<List<Meal>> getAllStoredMeals() {
         return  storedMeals;
+    }
+
+    @Override
+    public void insertIntoPlanned(PlannedMeal meal) {
+        new Thread(){
+            public void run(){
+                dao.insertIntoPlanned(meal);
+            }
+        }.start();
+    }
+
+    @Override
+    public void deleteFromPlanned(PlannedMeal meal) {
+        new Thread(){
+            @Override
+            public void run() {
+                dao.deleteFromPlanned(meal);
+            }
+        }.start();
+    }
+
+    @Override
+    public LiveData<List<PlannedMeal>> getPlannedMeals(long date) {
+         return dao.getPlannedMeals(date);
     }
 }
