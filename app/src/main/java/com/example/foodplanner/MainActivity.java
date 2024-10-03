@@ -12,6 +12,7 @@ import com.example.foodplanner.databinding.ActivityMainBinding;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.favorite.view.FavoriteFragment;
 import com.example.foodplanner.home.view.MealOfTheDayFragment;
+import com.example.foodplanner.planner.view.WeeklyPlannerFragment;
 import com.example.foodplanner.search.view.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {

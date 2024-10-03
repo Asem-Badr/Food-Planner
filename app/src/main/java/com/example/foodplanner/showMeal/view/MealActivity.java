@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.foodplanner.AddToPlanActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.model.Meal;
@@ -35,6 +36,7 @@ public class MealActivity extends AppCompatActivity implements ShowMealView,OnRm
     WebView webViewVideo;
     Button btnAddToFav;
     Button btnRemoveFromFavMeal;
+    Button btnAddToPlan;
     RecyclerView recyclerViewIngredients;
     IngredientsAdapter adapter;
     ShowMealPresenter presenter;
@@ -51,6 +53,7 @@ public class MealActivity extends AppCompatActivity implements ShowMealView,OnRm
         txtInstructions = findViewById(R.id.txtInstructions);
         btnAddToFav = findViewById(R.id.btnAddToFav);
         btnRemoveFromFavMeal = findViewById(R.id.btnRemoveFromFavMeal);
+        btnAddToPlan = findViewById(R.id.btnAddToPlan);
         recyclerViewIngredients = findViewById(R.id.recyclerViewIngredients);
         recyclerViewIngredients.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -92,6 +95,14 @@ public class MealActivity extends AppCompatActivity implements ShowMealView,OnRm
                 public void onClick(View view) {
                     //presenter remove_from_favorite() call
                     presenter.removeFromFav(meal);
+                }
+            });
+            btnAddToPlan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MealActivity.this,AddToPlanActivity.class);
+                    intent.putExtra("meal",meal);
+                    startActivity(intent);
                 }
             });
         }

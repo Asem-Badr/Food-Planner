@@ -10,19 +10,20 @@ import com.example.foodplanner.repository.MealsRepository;
 
 import java.util.List;
 
-public class FavPresenterImpl implements FavPresenter{
+public class FavPresenterImpl implements FavPresenter {
     MealsRepository repository;
     FavView view;
-    public FavPresenterImpl(FavView _view , MealsRepository _repository){
+
+    public FavPresenterImpl(FavView _view, MealsRepository _repository) {
         repository = _repository;
         view = _view;
     }
+
     @Override
     public void getMeals() {
         LiveData<List<Meal>> mealsLiveData = repository.getStoredMeals();
         view.observeMeals(mealsLiveData); // Pass LiveData to the view
     }
-
 
     @Override
     public void removeFromFav(Meal meal) {
