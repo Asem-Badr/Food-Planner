@@ -9,6 +9,7 @@ import androidx.room.Query;
 
 
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.PlannedMeal;
 
 import java.util.List;
 
@@ -22,4 +23,14 @@ public interface MealDAO {
 
     @Delete
     void deleteMeal(Meal meal);
+
+    @Query("SELECT * FROM meals_planned WHERE date = :date")
+    LiveData<List<PlannedMeal>> getPlannedMeals(long date);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertIntoPlanned(PlannedMeal meal);
+
+    @Delete
+    void deleteFromPlanned(PlannedMeal meal);
+
 }

@@ -1,5 +1,6 @@
 package com.example.foodplanner.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Entity(tableName = "meals_table")
 public class Meal implements Serializable {
+
 
     @PrimaryKey
     @SerializedName("idMeal")
@@ -177,20 +179,6 @@ public class Meal implements Serializable {
 
 
 
-    public Meal(int idMeal, String mealName, String category) {
-        this.idMeal = idMeal;
-        this.mealName = mealName;
-        this.category = category;
-    }
-    @Ignore
-    public Meal(int idMeal, String mealName, String category, String area, String instructions, String mealThumbnail) {
-        this.idMeal = idMeal;
-        this.mealName = mealName;
-        this.category = category;
-        this.area = area;
-        this.instructions = instructions;
-        this.mealThumbnail = mealThumbnail;
-    }
 
     public int getIdMeal() {
         return idMeal;
