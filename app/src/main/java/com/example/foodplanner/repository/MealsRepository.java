@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import com.example.foodplanner.db.MealsLocalDataSource;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.PlannedMeal;
 import com.example.foodplanner.network.FilterMealsByAreaCallback;
 import com.example.foodplanner.network.FilterMealsByCategoryCallback;
 import com.example.foodplanner.network.FilterMealsByIngredientCallback;
@@ -46,6 +47,16 @@ public class MealsRepository {
 
     public void deleteMeal(Meal meal) {
         localDataSource.deleteMeal(meal);
+    }
+
+    public void insertIntoPlanned(PlannedMeal meal){
+        localDataSource.insertIntoPlanned(meal);
+    }
+    public void deleteFromPlanned(PlannedMeal meal){
+        localDataSource.deleteFromPlanned(meal);
+    }
+    public LiveData<List<PlannedMeal>> getPlannedMeals(long date){
+        return localDataSource.getPlannedMeals(date);
     }
     public void searchMealByName(String name, SearchMealByNameCallback searchMealByNameCallback){
         remoteDataSource.searchMealByName(name,searchMealByNameCallback);
