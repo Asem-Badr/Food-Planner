@@ -108,6 +108,7 @@ public class WeeklyPlannerFragment extends Fragment implements PlanView ,OnRmPla
     @Override
     public void onRemovePlannedMealClick(PlannedMeal plannedMeal) {
         presenter.removeFromPlan(plannedMeal);
+        presenter.getPlannedMeals(date);
         Toast.makeText(requireContext(), "Meal removed from plan", Toast.LENGTH_SHORT).show();
     }
 }
