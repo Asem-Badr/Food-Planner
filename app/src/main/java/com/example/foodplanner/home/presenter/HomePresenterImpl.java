@@ -70,6 +70,6 @@ public class HomePresenterImpl implements HomePresenter, GetRandomMealCallback ,
 
     @Override
     public void onFailureListAreasCallBack(String errorMsg) {
-
+        view.showErrMsg("couldn't fetch countries ");
     }
 }

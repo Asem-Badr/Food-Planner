@@ -20,14 +20,16 @@ import com.example.foodplanner.favorite.presenter.FavPresenterImpl;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.repository.MealsRepository;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteFragment extends Fragment implements FavView,OnRmFavoriteClickListener{
+public class FavoriteFragment extends Fragment implements FavView, OnRmFavoriteClickListener {
     FavPresenter favPresenter;
     RecyclerView recyclerViewFav;
     MealsAdapter adapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,7 @@ public class FavoriteFragment extends Fragment implements FavView,OnRmFavoriteCl
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerViewFav.setLayoutManager(layoutManager);
-        adapter = new MealsAdapter(requireContext(), new ArrayList<>(),this);
+        adapter = new MealsAdapter(requireContext(), new ArrayList<>(), this);
         recyclerViewFav.setAdapter(adapter);
 
         //for the mvp design the view shouldn't contain any reference to the data sources.
@@ -59,6 +61,15 @@ public class FavoriteFragment extends Fragment implements FavView,OnRmFavoriteCl
     @Override
     public void onRmFavProductClick(Meal meal) {
         favPresenter.removeFromFav(meal);
+        Snackbar snackbar = Snackbar.make(recyclerViewFav, "Remove " +
+                        meal.getMealName() + " from favorites?", Snackbar.LENGTH_LONG);
+        snackbar.setAction("undo", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favPresenter.addToFav(meal);
+            }
+        });
+        snackbar.show();
     }
 
     @Override

@@ -24,6 +24,7 @@ import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.planner.presenter.PlanPresenter;
 import com.example.foodplanner.planner.presenter.PlanPresenterImpl;
 import com.example.foodplanner.repository.MealsRepository;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -110,5 +111,14 @@ public class WeeklyPlannerFragment extends Fragment implements PlanView ,OnRmPla
         presenter.removeFromPlan(plannedMeal);
         presenter.getPlannedMeals(date);
         Toast.makeText(requireContext(), "Meal removed from plan", Toast.LENGTH_SHORT).show();
+        Snackbar snackbar = Snackbar.make(recyclerViewDayMeals, "Remove " +
+                plannedMeal.getMeal().getMealName() + " from favorites?", Snackbar.LENGTH_LONG);
+        snackbar.setAction("undo", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.addToPlan(plannedMeal);
+            }
+        });
+        snackbar.show();
     }
 }

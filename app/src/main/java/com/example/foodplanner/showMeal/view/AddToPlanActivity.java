@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.showMeal.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,8 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.PlannedMeal;

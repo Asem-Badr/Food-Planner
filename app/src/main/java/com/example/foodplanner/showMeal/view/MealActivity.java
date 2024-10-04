@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.foodplanner.AddToPlanActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.db.MealsLocalDataSourceImpl;
 import com.example.foodplanner.model.Meal;
@@ -25,8 +24,6 @@ import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.repository.MealsRepository;
 import com.example.foodplanner.showMeal.presenter.ShowMealPresenter;
 import com.example.foodplanner.showMeal.presenter.ShowMealPresenterImpl;
-
-import java.util.ArrayList;
 
 public class MealActivity extends AppCompatActivity implements ShowMealView,OnRmFavoriteClickListener,OnAddFavoriteClickListener{
     ImageView imgMeal;

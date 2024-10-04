@@ -7,4 +7,6 @@ public interface PlanPresenter {
     public void getPlannedMeals(long date);
 
     public void removeFromPlan(PlannedMeal meal);
+
+    public void addToPlan(PlannedMeal meal);
 }

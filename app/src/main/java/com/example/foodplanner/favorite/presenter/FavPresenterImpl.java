@@ -29,4 +29,9 @@ public class FavPresenterImpl implements FavPresenter {
     public void removeFromFav(Meal meal) {
         repository.deleteMeal(meal);
     }
+
+    @Override
+    public void addToFav(Meal meal) {
+        repository.insertMeal(meal);
+    }
 }

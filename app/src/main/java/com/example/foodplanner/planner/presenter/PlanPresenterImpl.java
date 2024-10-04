@@ -29,4 +29,9 @@ public class PlanPresenterImpl implements PlanPresenter {
     public void removeFromPlan(PlannedMeal meal) {
         repository.deleteFromPlanned(meal);
     }
+
+    @Override
+    public void addToPlan(PlannedMeal meal) {
+        repository.insertIntoPlanned(meal);
+    }
 }
