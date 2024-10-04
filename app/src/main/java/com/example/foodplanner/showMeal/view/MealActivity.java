@@ -8,7 +8,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.repository.MealsRepository;
 import com.example.foodplanner.showMeal.presenter.ShowMealPresenter;
 import com.example.foodplanner.showMeal.presenter.ShowMealPresenterImpl;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MealActivity extends AppCompatActivity implements ShowMealView,OnRmFavoriteClickListener,OnAddFavoriteClickListener{
     ImageView imgMeal;
@@ -35,6 +38,7 @@ public class MealActivity extends AppCompatActivity implements ShowMealView,OnRm
     Button btnRemoveFromFavMeal;
     Button btnAddToPlan;
     RecyclerView recyclerViewIngredients;
+    ScrollView scrollView;
     IngredientsAdapter adapter;
     ShowMealPresenter presenter;
     @SuppressLint("SetJavaScriptEnabled")
@@ -51,6 +55,7 @@ public class MealActivity extends AppCompatActivity implements ShowMealView,OnRm
         btnAddToFav = findViewById(R.id.btnAddToFav);
         btnRemoveFromFavMeal = findViewById(R.id.btnRemoveFromFavMeal);
         btnAddToPlan = findViewById(R.id.btnAddToPlan);
+        scrollView = findViewById(R.id.scrollView);
         recyclerViewIngredients = findViewById(R.id.recyclerViewIngredients);
         recyclerViewIngredients.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -83,15 +88,23 @@ public class MealActivity extends AppCompatActivity implements ShowMealView,OnRm
             btnAddToFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //presenter add_to_fav() call
                     presenter.addToFav(meal);
+                    Toast.makeText(MealActivity.this, "Meal added "+meal.getMealName(), Toast.LENGTH_SHORT).show();
                 }
             });
             btnRemoveFromFavMeal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //presenter remove_from_favorite() call
                     presenter.removeFromFav(meal);
+                    Snackbar snackbar = Snackbar.make(scrollView, "Remove " +
+                            meal.getMealName() + " from favorites?", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            presenter.addToFav(meal);
+                        }
+                    });
+                    snackbar.show();
                 }
             });
             btnAddToPlan.setOnClickListener(new View.OnClickListener() {
