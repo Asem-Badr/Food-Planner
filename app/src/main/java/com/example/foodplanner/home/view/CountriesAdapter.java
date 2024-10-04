@@ -66,8 +66,9 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtTitle.setText(values.get(position).getArea());
         holder.txtDesc.setText(values.get(position).getCategory());
-        //holder.imgView_thumbnail.setImageResource(values.get(position).getThumbnail());
-        Glide.with(context).load(values.get(position).getMealThumbnail()).apply(new RequestOptions()
+        String countryCode = CountryCodeMapper.getCountryCode(values.get(position).getArea());
+        String flagUrl = "https://flagcdn.com/160x120/" + countryCode + ".png";
+        Glide.with(context).load(flagUrl).apply(new RequestOptions()
                         .override(150, 150)
                         .error(R.drawable.baseline_downloading_24))
                 .into(holder.imgView_thumbnail);
