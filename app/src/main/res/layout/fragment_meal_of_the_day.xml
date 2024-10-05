@@ -24,7 +24,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardMeal"
         android:layout_width="wrap_content"
-        android:layout_height="280dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:cardBackgroundColor="#EFE7E7"
         app:cardCornerRadius="20dp"
