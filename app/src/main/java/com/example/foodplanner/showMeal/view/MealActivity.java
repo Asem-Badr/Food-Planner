@@ -89,13 +89,14 @@ public class MealActivity extends AppCompatActivity implements ShowMealView,OnRm
                 @Override
                 public void onClick(View view) {
                     presenter.addToFav(meal);
-                    Toast.makeText(MealActivity.this, "Meal added "+meal.getMealName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MealActivity.this, "Meal added to Favorite"+meal.getMealName(), Toast.LENGTH_SHORT).show();
                 }
             });
             btnRemoveFromFavMeal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     presenter.removeFromFav(meal);
+                    Toast.makeText(MealActivity.this, "Meal removed from Favorite", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar.make(scrollView, "Remove " +
                             meal.getMealName() + " from favorites?", Snackbar.LENGTH_LONG);
                     snackbar.setAction("undo", new View.OnClickListener() {

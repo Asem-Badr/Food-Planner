@@ -65,6 +65,7 @@ public class AddToPlanActivity extends AppCompatActivity {
                     Toast.makeText(AddToPlanActivity.this, "choose the day pls ", Toast.LENGTH_SHORT).show();
                 }else{
                     repository.insertIntoPlanned(plannedMeal);
+                    Toast.makeText(AddToPlanActivity.this, "Meal added to the Plan", Toast.LENGTH_SHORT).show();
                 }
             }
         });
